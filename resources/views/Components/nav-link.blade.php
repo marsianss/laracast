@@ -5,3 +5,4 @@
  aria-current="{{ $active ? 'page': 'false' }}"
  {{ $attributes }}
 >{{ $slot }}</a>
+
