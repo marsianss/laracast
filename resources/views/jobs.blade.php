@@ -1,6 +1,8 @@
+use App\Models\Job;
+
 <x-layout>
     <x-slot:heading>
-        Job
+        Job Listing
     </x-slot:heading>
 
     <ul>
