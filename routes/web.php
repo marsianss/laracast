@@ -7,17 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
     // home page
 Route::get('/', function () {
-   $jobs=  Job::all();
-    
-    dd($jobs);
-    
-    // return view('home');
+ return view('home');
 });
 
 //regular job listing
 Route::get('/jobs', function ()  {
-    $job = Job::all();
-    return view('job', ['job' => $job]);
+    $jobs = Job::all();
+
+    
+    return view('jobs', ['jobs' => $jobs]);
 });
 
 //job details with id

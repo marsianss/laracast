@@ -1,4 +1,4 @@
-use App\Models\Job;
+
 <x-layout>
     <x-slot:heading>
         Jobs Page

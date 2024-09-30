@@ -1,4 +1,3 @@
-use App\Models\Job;
 
 <x-layout>
     <x-slot:heading>
@@ -15,3 +14,4 @@ use App\Models\Job;
         @endforeach
     </ul>
 </x-layout>
+
