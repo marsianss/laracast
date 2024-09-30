@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
     // home page
 Route::get('/', function () {
-   $jobs=  Job::all(); 
+   $jobs=  Job::all();
     
     dd($jobs);
     
