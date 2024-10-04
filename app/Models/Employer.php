@@ -4,8 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
-class Employer extends Model
-{
-    use HasFactory;
+class Employer extends Model {
+
+    public function jobs() 
+    {
+        return $this->hasMany(Job::class);
+    }
 }
+
+
+
+

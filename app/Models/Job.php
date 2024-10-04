@@ -13,6 +13,10 @@ use HasFactory;
 protected $table = 'job_listings';
 
 protected $fillable = ['title', 'salary']; // this is to prevent mass assignment error
-    }
 
+public function employer() {
+    return $this->belongsTo(Employer::class);
 
+}
+
+}
