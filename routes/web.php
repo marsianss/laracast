@@ -12,10 +12,12 @@ Route::get('/', function () {
 
 //regular job listing
 Route::get('/jobs', function ()  {
-    $jobs = Job::all();
+    $jobs = Job::with('employer')->simplePaginate(5);
 
     
-    return view('jobs', ['jobs' => $jobs]);
+    return view('jobs', [
+        'jobs' => $jobs
+    ]);
 });
 
 //job details with id
