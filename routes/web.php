@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 //regular job listing
 Route::get('/jobs', function ()  {
-    $jobs = Job::with('employer')->simplePaginate(5);
+    $jobs = Job::with('employer')->latest()->simplePaginate(5);
 
     
     return view('jobs.index', [
@@ -37,7 +37,15 @@ Route::get('/jobs/create', function() {
 });
 
 Route::post('/jobs', function () {
-    dd(request()->all());
+  // validation 
+
+  Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+  ]);
+
+  return redirect('/jobs');
 });
 
 
