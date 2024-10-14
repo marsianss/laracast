@@ -15,7 +15,7 @@ Route::get('/jobs', function ()  {
     $jobs = Job::with('employer')->simplePaginate(5);
 
     
-    return view('jobs', [
+    return view('jobs.index', [
         'jobs' => $jobs
     ]);
 });
@@ -29,9 +29,16 @@ Route::get('/job{id}', function ($id) {
         return view('job', ['job' => null]);
     }
 
-    return view('job', ['job' => $job]);
+    return view('jobs.show', ['job' => $job]);
 });
 
+Route::get('/jobs/create', function() {
+    return view('jobs.create');
+});
+
+Route::post('/jobs', function () {
+    dd(request()->all());
+});
 
 
 Route::get('/contact', function () {
