@@ -13,7 +13,7 @@ use HasFactory;
 protected $table = 'job_listings';
 
 // protected $fillable = ['employer_id', 'title', 'salary']; // this is to prevent mass assignment error
-
+// zodat ik wat kan committen
 protected $guarded = []; 
 
 public function employer() {
