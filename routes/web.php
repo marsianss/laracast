@@ -18,7 +18,7 @@ Route::get('/jobs', function ()  {
     ]);
 });
 
-// Job details route with id
+// Show 
 Route::get('/job{id}', function ($id) {
     $job = Job::find($id);
 
@@ -56,6 +56,32 @@ Route::get('/jobs/{id}/edit', function ($id) {
 
     return view('jobs.edit', ['job' => $job]); // Leads to the jobs.edit view with job details
 });
+
+// update
+Route::patch('/job{id}', function ($id) {
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required']
+    ]);
+
+    $job = Job::findOrFail($id);
+    $job->update([
+        'title' => request('title'),
+        'salary' => request('salary')
+    ]);
+
+    // Redirect to job page (without slash)
+    return redirect("/job{$id}");
+});
+
+
+// destroy
+Route::delete('/job{id}', function ($id) {
+    Job::findOrFail($id)->delete();
+    return redirect('/jobs');
+});
+
+
 // Contact page route
 Route::get('/contact', function () {
     return view('contact'); // Leads to the contact view
