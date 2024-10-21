@@ -19,15 +19,14 @@ Route::get('/jobs', function ()  {
 });
 
 // Show 
-Route::get('/job{id}', function ($id) {
-    $job = Job::find($id);
+Route::get('/job{job}', function (Job $job) {
+ //   $job = Job::find($id);
 
-    if (!$job) {
-        // Job not found, return a 404 or display a custom message
-        return view('job', ['job' => null]); // Leads to the job view with null if job not found
-    }
-
-    return view('jobs.show', ['job' => $job]); // Leads to the jobs.show view with job details
+ //   if (!$job) {
+ //       // Job not found, return a 404 or display a custom message
+ //       return view('job', ['job' => null]); // Leads to the job view with null if job not found
+ //
+  return view('jobs.show', ['job' => $job]); // Leads to the jobs.show view with job details
 });
 
 // Job creation form route
@@ -51,14 +50,13 @@ Route::post('/jobs', function () {
     return redirect('/jobs'); // Redirects to the jobs listing page after creation
 });
 
-Route::get('/jobs/{id}/edit', function ($id) {
-    $job = Job::find($id);
+Route::get('/jobs/{job}/edit', function (Job $job) {
 
     return view('jobs.edit', ['job' => $job]); // Leads to the jobs.edit view with job details
 });
 
 // update
-Route::patch('/job{id}', function ($id) {
+Route::patch('/job{job}', function (Job $job) {
     request()->validate([
         'title' => ['required', 'min:3'],
         'salary' => ['required']
@@ -76,8 +74,8 @@ Route::patch('/job{id}', function ($id) {
 
 
 // destroy
-Route::delete('/job{id}', function ($id) {
-    Job::findOrFail($id)->delete();
+Route::delete('/job{job}', function (Job $job) {
+    $job->delete();
     return redirect('/jobs');
 });
 
