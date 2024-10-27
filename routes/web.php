@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SessionController;
 
 
 Route::view('/', 'home'); 
+Route::view('/contact', 'contact'); 
 
-/*
+Route::resource('jobs', JobController::class);
+
 Route::controller(JobController::class)->group(function (){
     Route::get('/jobs', 'index');
     Route::get('/job{job}', 'show');
@@ -18,11 +22,13 @@ Route::controller(JobController::class)->group(function (){
     Route::patch('/job{job}', 'update');
     Route::delete('/job{job}', 'destroy');
 }); 
-*/
 
+
+/*
 Route::resource('jobs', JobController::class, [
     'only' => ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']
 ]);
+*/
 /*
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/job{job}', [JobController::class, 'show']); 
@@ -33,5 +39,10 @@ Route::patch('/job{job}', [JobController::class, 'update']);
 Route::delete('/job{job}', [JobController::class, 'destroy']);  
 */
 
+//Auth
 
-Route::view('/contact', 'contact'); 
+Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
