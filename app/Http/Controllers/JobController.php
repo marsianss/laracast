@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Employer;
+
 class JobController extends Controller
 {
  public function index()
@@ -15,10 +20,12 @@ class JobController extends Controller
     ]);
  }
 
+
  public function create()
  {
 return view('jobs.create');
  }
+
 
  public function show(Job $job)
  {
@@ -30,7 +37,7 @@ return view('jobs.create');
 request()->validate([
     'title' => ['required', 'min:3'],
     'salary' => ['required']
-]); 
+]);
 
 Job::create([
     'title' => request('title'),
@@ -41,10 +48,15 @@ Job::create([
 return redirect('/jobs');
  }
 
- public function edit(Job $job)
- {
-return view('jobs.edit', ['job' => $job]);
- }
+
+
+
+public function edit(Job $job)
+{
+    return view('jobs.edit', ['job' => $job]);
+}
+
+
 
 
  public function update(Job $job)
@@ -67,9 +79,14 @@ return redirect("/job{$id}");
  }
 
 
+
+
+
+
  public function destroy(Job $job)
  {
     $job->delete();
     return redirect('/jobs');
  }
 }
+

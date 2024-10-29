@@ -5,11 +5,13 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 class RegisteredUserController extends Controller
 {
     public function create()
     {
         return view('auth.register');
+
     }
 
     public function store()
@@ -20,13 +22,13 @@ class RegisteredUserController extends Controller
         'email'       => ['required', 'email'],
         'password'    => ['required', Password::min(6), 'confirmed']
         ]);
-       
-        
+
+
         // Create the user
-       $user =  User::create($attributes); 
+       $user =  User::create($attributes);
 
         // login
-        Auth::login($user); 
+        Auth::login($user);
 
         // redirection
         return redirect('/jobs');
